@@ -8,3 +8,6 @@ The functionality is quite simple:
 
 # How to run
 Just use **npm run start** or doubleclick at start.bat.
+
+# Fast request
+Postman request collection located at "postman requests" folder.
