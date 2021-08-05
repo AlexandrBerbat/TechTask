@@ -56,10 +56,16 @@ deleteBicycle = async function (req, res) {
 }
 
 
+getStats = async function (req,res) {
+    const resp = await Bicycles.getStats();
+    res.send(resp);
+}
+
 
 module.exports = {
     showAll,
     addNewBicycle,
     changeStatus,
-    deleteBicycle
+    deleteBicycle,
+    getStats
 }

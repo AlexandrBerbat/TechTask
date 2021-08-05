@@ -18,10 +18,7 @@ const validator = (req, res, next) => {
   if (!valid) {
 
     console.log(ajv.errors);
-
-    
     ajv.errors = ajv.errors.map(er => `${er.instancePath.slice(1)} ${er.message}`);
-    let resSendStr = "";
 
     res.send({status:"Validate error",errorsArr: ajv.errors});
 
@@ -31,9 +28,6 @@ const validator = (req, res, next) => {
   next();
 }
 
-
-
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.send("Hello World!");
@@ -41,15 +35,13 @@ router.get('/', function (req, res, next) {
 
 router.get("/all", bicycles.showAll);
 
-// router.post("/addbicycle", upload.none(), validator, (req,res) => {
-//   console.log("123 post is working");
-//   res.send(req.body);
-// })
-
 router.post("/addbicycle", upload.none(), validator, bicycles.addNewBicycle);
 
 router.post("/updatestatus", upload.none(), bicycles.changeStatus);
 
 router.post("/deletebicycle", upload.none(), bicycles.deleteBicycle);
+
+router.get("/getstats", bicycles.getStats);
+
 
 module.exports = router;

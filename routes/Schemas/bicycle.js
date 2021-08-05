@@ -22,10 +22,6 @@ module.exports = {
         description: {
             type: "string",
             minLength: 5
-        },
-        // status: {
-        //     type: "string",
-        //     pattern: "^(busy|available|unavailable)$"
-        // }
+        }
     }
 }
