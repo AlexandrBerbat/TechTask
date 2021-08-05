@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="windth=device-width, initial-scale">
+        <title>Bicycles</title>
+    </head>
+    <body>
+        <ul style="display: flex; justify-content: space-around;">
+        <% arr.forEach(el => { %>
+            <li>
+                <h3>Name: <%= el.name %></h3>
+                <h4>Type: <%= el.type %></h4>
+                <h4>Color: <%= el.color %></h4>
+                <h4>Wheel size: <%= el.wheelSize %></h4>
+                <h4>Price: <%= el.price %></h4>
+                <h4>Description: <%= el.description %></h4>
+                <h4>Status: <%= el.status %></h4>
+            </li>
+            <% }); %>
+        </ul>
+    </body>
+</html>

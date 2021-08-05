@@ -13,18 +13,17 @@ const validator = (req, res, next) => {
   let data = req.body;
   const ajv = new Ajv.default({ allErrors: true });
   const valid = ajv.validate(bicycleSchema, data);
+  console.log(valid);
 
   if (!valid) {
 
     console.log(ajv.errors);
-    ajv.errors = ajv.errors.map(er => `${er.dataPath.slice(1)} ${er.message}`);
+
+    
+    ajv.errors = ajv.errors.map(er => `${er.instancePath.slice(1)} ${er.message}`);
     let resSendStr = "";
-    ajv.errors.forEach(item => {
-      resSendStr += `${item}<br>\n`;
-    })
-    // console.log("Res send str from validator:")
-    // console.log(resSendStr)
-    res.send(resSendStr);
+
+    res.send({status:"Validate error",errorsArr: ajv.errors});
 
     return;
   }
@@ -47,6 +46,10 @@ router.get("/all", bicycles.showAll);
 //   res.send(req.body);
 // })
 
-router.post("/addbicycle", upload.none(), validator, bicycles.addNewBicycle)
+router.post("/addbicycle", upload.none(), validator, bicycles.addNewBicycle);
+
+router.post("/updatestatus", upload.none(), bicycles.changeStatus);
+
+router.post("/deletebicycle", upload.none(), bicycles.deleteBicycle);
 
 module.exports = router;
